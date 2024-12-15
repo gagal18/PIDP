@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  hadoop-namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: hadoop-container
+    hostname: hadoop-node
+    ports:
+      - "8088:8088" # YARN Resource Manager
+      - "50070:50070" # HDFS NameNode Web UI
+    environment:
+      - CLUSTER_NAME=test-cluster
+      - HDFS_NAMENODE_USER=root
+      - HDFS_DATANODE_USER=root
+      - HDFS_SECONDARYNAMENODE_USER=root
+      - YARN_RESOURCEMANAGER_USER=root
+      - YARN_NODEMANAGER_USER=root
+      - JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64        
+    tty: true
+    stdin_open: true
+    command: ["bash"]
+
